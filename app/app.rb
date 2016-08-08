@@ -8,4 +8,8 @@ class InglouriousBnB < Sinatra::Base
   get '/' do
     erb :index
   end
+
+  get '/spaces/new' do
+    erb :'spaces/new'
+  end
 end
