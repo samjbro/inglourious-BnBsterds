@@ -25,7 +25,15 @@ I can add many spaces to the list.
 
 As an owner of a space,
 so that I can provide the necessary information to potential customers,
-I want to detail the name, short description and price for my spaces.
+I want to detail short description.
+
+As an owner of a space,
+so that I can provide the necessary information to potential customers,
+I want to detail the name.
+
+As an owner of a space,
+so that I can provide the necessary information to potential customers,
+I want to detail the price for my spaces
 
 As an owner of a space,
 so potential customers know when my space is available,
@@ -37,7 +45,11 @@ I'd like to request approval from the owner.
 
 As an owner of a space,
 so that I can confirm that a customer can use my space,
-I'd like the ability to approve or reject the rental request.
+I'd like the ability to approve the rental request.
+
+As an owner of a space,
+so that I can confirm that a customer can use my space,
+I'd like the ability to reject the rental request.
 
 As a customer,
 so that I can't book an unavailable space,
@@ -48,6 +60,42 @@ so that I can decide from multiple offers,
 my space is available for the requested date until I accept a request.
 
 ```
+
+
+### User  
+| Responsibilities             | Collaborators  |
+| -----------------------------|----------------|
+| signUp	                     | spaces         |
+| knows name	booking request  |                |
+| knows email address          |	              |
+| knows address                |	              |
+| knows spaces owned	         |                |
+| validates password	         |                |
+| knows booking history	       |                |
+| make booking request	       |                |
+| can add space	               |                |
+| can remove space	           |                |
+
+
+### Space
+| Responsibilities             | Collaborators  |
+| -----------------------------|----------------|
+| knows its owner	                     | user         |
+| knows its price |                |
+| knows its description        |	              |
+| knows its availability                |	              |
+| knows its name         |                |
+
+### Booking Request
+| Responsibilities             | Collaborators  |
+| -----------------------------|----------------|
+| can notify acceptance                     | user         |
+| can notify rejection |                |
+| can notify creation       |	              |
+| knows booking requestor               |	              |
+| knows space owner       |                |
+| knows date space has been booked | |
+
 
 ## Work hours
 
