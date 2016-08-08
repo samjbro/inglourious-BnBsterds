@@ -1,13 +1,15 @@
 feature 'user management' do
 
   scenario 'I am able to create a user account' do
-    visit '/users/new'
-    fill_in(:email, with: 'example@gmail.com')
-    fill_in(:name, with: 'Joe Bloggs')
-    fill_in(:password, with: 'password123')
-    fill_in(:password_confirmation, with: 'password123')
-    click_button('submit')
+    sign_up
     expect(page).to have_content('You are signed in as Joe Bloggs.')
+  end
+
+  scenario 'I am able to see my user profile' do
+    sign_up
+    visit('/users/profile')
+    expect(page).to have_content('Name: Joe Bloggs')
+    expect(page).to have_content('Email: example@gmail.com')
   end
 
 end
