@@ -5,7 +5,9 @@
   </head>
   <body>
     <h1>Hello world</h1>
-    You are signed in as <%= @name %>.
+    <% if current_user %>
+      You are signed in as <%= current_user.name %>.
+    <% end %>
     <%= yield %>
   </body>
 </html>
