@@ -49,6 +49,16 @@ class InglouriousBnB < Sinatra::Base
     erb :'spaces/all'
   end
 
+  get '/session/new' do
+    erb :'session/new'
+  end
+
+  post '/session/new' do
+    @user = User.first(email: params[:email])
+    session[:id] = @user.id
+    redirect '/'
+  end
+
   helpers do
     def current_user
       @current_user = User.get(session[:id])
