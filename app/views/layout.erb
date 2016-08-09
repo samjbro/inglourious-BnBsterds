@@ -6,6 +6,7 @@
   <body>
     <% if current_user %>
     You are signed in as <%= current_user.name %>.
+
     <form action="/session/sign-out" method="post">
       <input type="hidden" name="_method" value="delete">
       <input type="submit" value="Sign-out">
@@ -14,6 +15,7 @@
     <% else %>
     <a href="/users/new" >Sign-up</a>
     <a href="/session/new">Sign-in</a>
+
     <% end %>
     <%= yield %>
   </body>
