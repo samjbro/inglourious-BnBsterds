@@ -4,5 +4,6 @@ feature 'Creating a space' do
     expect{ click_button('submit') }.to change{ Space.count }.by(1)
     expect(page).to have_content("Inglorious Apartment")
     expect(page).to have_content("Beautiful bachelor pad for the whole squad")
+    expect(page).to have_content("£150")
   end
 end

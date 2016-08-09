@@ -11,9 +11,11 @@ def sign_up(email: 'example@gmail.com',
 end
 
 def create_space(name: "Inglorious Apartment",
-                 description: "Beautiful bachelor pad for the whole squad")
+                 description: "Beautiful bachelor pad for the whole squad",
+                 price: 150)
   visit 'spaces/new'
   expect(page).to have_content("List a space")
   fill_in("space_name", :with => name)
   fill_in("space_description", :with => description)
+  fill_in("space_price", :with => price)
 end

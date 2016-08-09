@@ -1,7 +1,8 @@
 <h2>Listed spaces: <br>
-  <ul id="spaces">
 <% @spaces.each do |space| %>
-  <li>space name :<%= space.name%></li>
-  <li>space description :<%= space.description %></li>
-<% end %>
+  <ul id=<%= space.name %>>
+    <li>space name :<%= space.name%></li>
+    <li>space description :<%= space.description %></li>
+    <li>space price/night :£<%= space.price %></li>
   </ul>
+<% end %>
