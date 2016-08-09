@@ -6,6 +6,7 @@ require 'sinatra/base'
 
 class InglouriousBnB < Sinatra::Base
   enable :sessions
+  use Rack::MethodOverride
 
   get '/' do
     @name = session[:name]
@@ -56,6 +57,11 @@ class InglouriousBnB < Sinatra::Base
   post '/session/new' do
     @user = User.first(email: params[:email])
     session[:id] = @user.id
+    redirect '/'
+  end
+
+  delete '/session/sign-out' do
+    session[:id] = nil
     redirect '/'
   end
 
