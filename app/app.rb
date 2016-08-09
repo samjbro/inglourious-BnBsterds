@@ -17,7 +17,10 @@ class InglouriousBnB < Sinatra::Base
   end
 
   post '/users/new' do
-    @user = User.create(name: params[:name], email: params[:email])
+    @user = User.create(name: params[:name],
+                        email: params[:email],
+                        password: params[:password],
+                        password_confirmation: params[:password_confirmation])
     session[:id] = @user.id
     redirect('/')
   end
@@ -49,6 +52,16 @@ class InglouriousBnB < Sinatra::Base
   get '/spaces/all' do
     @spaces = Space.all
     erb :'spaces/all'
+  end
+
+  get '/session/new' do
+    erb :'session/new'
+  end
+
+  post '/session/new' do
+    @user = User.first(email: params[:email])
+    session[:id] = @user.id
+    redirect '/'
   end
 
   helpers do
