@@ -32,7 +32,8 @@ class InglouriousBnB < Sinatra::Base
   end
 
   post '/spaces' do
-    space = Space.create(name: params[:space_name])
+    space = Space.create(name: params[:space_name],
+                         description: params[:space_description])
     # space.save
     redirect('/spaces/all')
   end
