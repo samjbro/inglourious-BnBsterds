@@ -1,8 +1,7 @@
 feature 'user management' do
 
   scenario 'I am able to create a user account' do
-    sign_up
-    expect(page).to have_content('You are signed in as Joe Bloggs.')
+    expec{ sign_up }.to change{ User.count }.by(1)
   end
 
   scenario 'I am able to see my user profile' do
