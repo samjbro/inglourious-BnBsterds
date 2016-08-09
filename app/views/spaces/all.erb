@@ -1,6 +1,7 @@
 <h2>Listed spaces: <br>
   <ul id="spaces">
 <% @spaces.each do |space| %>
-  <li><%= space.name%></li>
+  <li>space name :<%= space.name%></li>
+  <li>space description :<%= space.description %></li>
 <% end %>
   </ul>
