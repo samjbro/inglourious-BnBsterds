@@ -37,7 +37,9 @@ class InglouriousBnB < Sinatra::Base
   post '/spaces' do
     space = Space.create(name: params[:space_name],
                          description: params[:space_description],
-                         price: params[:space_price].to_i)
+                         price: params[:space_price].to_i,
+                         start_date: params[:space_start_date],
+                         end_date: params[:space_end_date])
     # space.save
     redirect('/spaces/all')
   end
