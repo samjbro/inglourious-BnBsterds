@@ -5,11 +5,19 @@ feature "Sessions" do
                 name: 'Joe Bloggs',
                 password: 'password123',
                 password_confirmation: 'password123')
-    visit('session/new')
+    visit('/')
+    click_link('Sign-in')
     fill_in(:email, with: 'example@gmail.com')
     fill_in(:password, with: 'password123')
     click_button('Sign-in')
     expect(page).to have_content("You are signed in as Joe Bloggs")
+  end
+
+  scenario 'As a signed-in user, I can sign-out' do
+    sign_up
+    click_button('Sign-out')
+    expect(page).to have_content("Sign-in")
+    expect(page).to have_content("Sign-up")
   end
 
 end
