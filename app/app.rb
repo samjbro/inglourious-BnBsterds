@@ -26,6 +26,16 @@ class InglouriousBnB < Sinatra::Base
     erb :'users/profile'
   end
 
+
+  get '/spaces/new' do
+    erb :'spaces/new'
+  end
+
+  post '/spaces' do
+    space = Space.create
+    # space.save
+  end
+
   helpers do
     def current_user
       @current_user = User.get(session[:id])

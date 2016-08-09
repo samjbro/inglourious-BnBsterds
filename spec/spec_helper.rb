@@ -7,6 +7,7 @@ require 'rspec'
 require 'capybara'
 require 'capybara/rspec'
 require 'database_cleaner'
+require_relative '../app/datamapper_config.rb'
 
 Capybara.app = InglouriousBnB
 
