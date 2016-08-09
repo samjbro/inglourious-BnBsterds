@@ -7,8 +7,8 @@ class User
   attr_accessor :password_confirmation
 
   property :id, Serial
-  property :name, String
-  property :email, String
+  property :name, String, required: true
+  property :email, String, unique: true, required: true
   property :password_digest, String, length: 60
 
   validates_confirmation_of :password
