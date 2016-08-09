@@ -60,8 +60,8 @@ class InglouriousBnB < Sinatra::Base
   end
 
   post '/session/new' do
-    @user = User.first(email: params[:email])
-    session[:id] = @user.id
+    user = User.password_authentication(params[:email], params[:password])
+    session[:id] = user.id
     redirect '/'
   end
 
