@@ -6,6 +6,7 @@ require 'sinatra/base'
 
 class InglouriousBnB < Sinatra::Base
   enable :sessions
+  use Rack::MethodOverride
 
   get '/' do
     @name = session[:name]
@@ -26,6 +27,7 @@ class InglouriousBnB < Sinatra::Base
   end
 
   get '/users/profile' do
+    @spaces = Space.all(user_id: session[:id])
     erb :'users/profile'
   end
 
@@ -35,12 +37,16 @@ class InglouriousBnB < Sinatra::Base
   end
 
   post '/spaces' do
-    space = Space.create(name: params[:space_name],
-                         description: params[:space_description],
-                         price: params[:space_price].to_i,
-                         start_date: params[:space_start_date],
-                         end_date: params[:space_end_date])
-    # space.save
+     space = Space.new(name: params[:space_name],
+                                         description: params[:space_description],
+                                         price: params[:space_price].to_i,
+                                         start_date: params[:space_start_date],
+                                         end_date: params[:space_end_date])
+     space.user = current_user
+     current_user.spaces << space
+
+     space.save
+     current_user.save
     redirect('/spaces/all')
   end
 
@@ -56,6 +62,11 @@ class InglouriousBnB < Sinatra::Base
   post '/session/new' do
     @user = User.first(email: params[:email])
     session[:id] = @user.id
+    redirect '/'
+  end
+
+  delete '/session/sign-out' do
+    session[:id] = nil
     redirect '/'
   end
 

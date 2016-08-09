@@ -10,6 +10,7 @@ class User
   property :name, String, required: true
   property :email, String, unique: true, required: true
   property :password_digest, String, length: 60
+  has n, :spaces, through: Resource
 
   validates_confirmation_of :password
 
