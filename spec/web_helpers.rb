@@ -2,7 +2,8 @@ def sign_up(email: 'example@gmail.com',
             name: 'Joe Bloggs',
             password: 'password123',
             password_confirmation: 'password123')
-  visit '/users/new'
+  visit("/")
+  click_link("Sign-up")
   fill_in(:email, with: email)
   fill_in(:name, with: name)
   fill_in(:password, with: password)

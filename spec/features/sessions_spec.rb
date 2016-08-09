@@ -5,7 +5,8 @@ feature "Sessions" do
                 name: 'Joe Bloggs',
                 password: 'password123',
                 password_confirmation: 'password123')
-    visit('session/new')
+    visit('/')
+    click_link('Sign-in')
     fill_in(:email, with: 'example@gmail.com')
     fill_in(:password, with: 'password123')
     click_button('Sign-in')

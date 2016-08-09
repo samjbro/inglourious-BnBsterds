@@ -8,7 +8,10 @@ feature 'user management' do
     expect{ sign_up(password_confirmation: 'wrongpassword') }.not_to change{ User.count }
     expect{ sign_up(email: nil) }.not_to change{ User.count }
     expect{ sign_up(name: nil) }.not_to change{ User.count }
-    sign_up
+    User.create(email: 'example@gmail.com',
+                name: 'Joe Bloggs',
+                password: 'password123',
+                password_confirmation: 'password123')
     expect{ sign_up }.not_to change{ User.count }
   end
 
