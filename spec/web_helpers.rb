@@ -12,10 +12,15 @@ end
 
 def create_space(name: "Inglorious Apartment",
                  description: "Beautiful bachelor pad for the whole squad",
-                 price: 150)
+                 price: 150,
+                 start_date: '2016/08/09',
+                 end_date: '2016/08/16'
+                 )
   visit 'spaces/new'
   expect(page).to have_content("List a space")
   fill_in("space_name", :with => name)
   fill_in("space_description", :with => description)
   fill_in("space_price", :with => price)
+  select(start_date, :from => 'space_start_date')
+  select(end_date, :from => 'space_end_date')
 end
