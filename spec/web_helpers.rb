@@ -21,6 +21,6 @@ def create_space(name: "Inglorious Apartment",
   fill_in("space_name", :with => name)
   fill_in("space_description", :with => description)
   fill_in("space_price", :with => price)
-  select(start_date, :from => 'space_start_date')
-  select(end_date, :from => 'space_end_date')
+  fill_in("space_start_date", :with => start_date)
+  fill_in("space_end_date", :with => end_date)
 end
