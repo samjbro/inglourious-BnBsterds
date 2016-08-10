@@ -61,8 +61,11 @@ class InglouriousBnB < Sinatra::Base
 
   post '/session/new' do
     user = User.password_authentication(params[:email], params[:password])
-    session[:id] = user.id
-    redirect '/'
+      if user
+        session[:id] = user.id
+        redirect '/'
+      end
+      redirect '/'
   end
 
   delete '/session/sign-out' do
