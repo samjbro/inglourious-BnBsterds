@@ -26,7 +26,7 @@ feature "Sessions" do
     fill_in(:email, with: 'example@gmail.com')
     fill_in(:password, with: 'abc')
     click_button('Sign-in')
-    expect(page).to have_content("Hello World")
+    expect(page).to have_content("Sign-in Failed")
   end
 
 end

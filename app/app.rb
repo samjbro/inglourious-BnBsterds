@@ -2,11 +2,17 @@ ENV['RACK_ENV'] ||= 'development'
 
 require_relative 'datamapper_config'
 require 'sinatra/base'
-# require './app/user'
+require 'sinatra/flash'
+require 'sinatra/partial'
+
 
 class InglouriousBnB < Sinatra::Base
   enable :sessions
   use Rack::MethodOverride
+  register Sinatra::Flash
+  register Sinatra::Partial
+  set :partial_template_engine, :erb
+  enable :partial_underscores
 
   get '/' do
     @name = session[:name]
@@ -82,7 +88,8 @@ class InglouriousBnB < Sinatra::Base
         session[:id] = user.id
         redirect '/'
       end
-      redirect '/'
+      flash.next[:errors] = ["Sign-in Failed, plese try again"]
+      redirect '/session/new'
   end
 
   delete '/session/sign-out' do
