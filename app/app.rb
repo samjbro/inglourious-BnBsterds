@@ -54,7 +54,8 @@ class InglouriousBnB < Sinatra::Base
     if session[:filter_to] == nil && session[:filter_from] == nil
       @spaces = Space.all
     else
-      @spaces = Space.all(start_date: (session[:filter_from]..session[:filter_to]))
+      filter_range = (Date.parse(session[:filter_from])..Date.parse(session[:filter_to]))
+      @spaces = check_availability(Space.all, filter_range)
     end
     erb :'spaces/all'
   end
@@ -86,6 +87,17 @@ class InglouriousBnB < Sinatra::Base
   helpers do
     def current_user
       @current_user = User.get(session[:id])
+    end
+
+    def check_availability(spaces, filter_range)
+      return_arr = []
+      spaces.each do |space|
+        space_range = (space.start_date.to_date..space.end_date.to_date)
+        unless (space_range.max < filter_range.begin || filter_range.max < space_range.begin)
+          return_arr.push(space)
+        end
+      end
+      return_arr
     end
   end
 end
