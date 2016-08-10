@@ -38,10 +38,10 @@ class InglouriousBnB < Sinatra::Base
 
   post '/spaces' do
      space = Space.new(name: params[:space_name],
-                                         description: params[:space_description],
-                                         price: params[:space_price].to_i,
-                                         start_date: params[:space_start_date],
-                                         end_date: params[:space_end_date])
+                                    description: params[:space_description],
+                                    price: params[:space_price].to_i,
+                                    start_date: params[:space_start_date],
+                                    end_date: params[:space_end_date])
      space.user = current_user
      current_user.spaces << space
 
@@ -51,8 +51,18 @@ class InglouriousBnB < Sinatra::Base
   end
 
   get '/spaces/all' do
-    @spaces = Space.all
+    if session[:filter_to] == nil && session[:filter_from] == nil
+      @spaces = Space.all
+    else
+
+    end
     erb :'spaces/all'
+  end
+
+  post '/spaces/filtered' do
+    session[:filter_to] = params[:available_to]
+    session[:filter_from] = params[:available_from]
+    redirect '/spaces/all'
   end
 
   get '/session/new' do

@@ -17,7 +17,7 @@ def create_space(name: "Inglorious Apartment",
                  start_date: '2016/08/09',
                  end_date: '2016/08/16'
                  )
-  visit '/spaces/new'
+  visit('/spaces/new')
   fill_in("space_name", :with => name)
   fill_in("space_description", :with => description)
   fill_in("space_price", :with => price)
