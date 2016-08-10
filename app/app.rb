@@ -55,6 +55,11 @@ class InglouriousBnB < Sinatra::Base
     erb :'spaces/all'
   end
 
+  post '/spaces/detail' do
+    @space = Space.get(params[:space_id])
+    erb :'spaces/detail'
+  end
+
   get '/session/new' do
     erb :'session/new'
   end

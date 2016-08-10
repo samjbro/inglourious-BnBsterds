@@ -6,4 +6,8 @@
     <li>space price/night :£<%= space.price %></li>
     <li>Available from: <%= space.start_date + " to " + space.end_date %></li>
   </ul>
+  <form action='/spaces/detail' method="post">
+    <input type="hidden" name="space_id" value=<%= space.id %>>
+    <input type="submit" value="Space details">
+  </form>
 <% end %>
