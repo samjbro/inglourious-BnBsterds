@@ -1,0 +1,7 @@
+
+  <ul id=<%= @space.name %>>
+    <li>space name :<%= @space.name%></li>
+    <li>space description :<%= @space.description %></li>
+    <li>space price/night :£<%= @space.price %></li>
+    <li>Available from: <%= @space.start_date.to_date.to_s + " to " + @space.end_date.to_date.to_s %></li>
+  </ul>

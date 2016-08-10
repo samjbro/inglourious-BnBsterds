@@ -60,6 +60,12 @@ class InglouriousBnB < Sinatra::Base
     erb :'spaces/all'
   end
 
+
+  post '/spaces/detail' do
+    @space = Space.get(params[:space_id])
+    erb :'spaces/detail'
+  end
+
   post '/spaces/filtered' do
     session[:filter_to] = params[:available_to]
     session[:filter_from] = params[:available_from]
