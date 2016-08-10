@@ -20,4 +20,13 @@ feature "Sessions" do
     expect(page).to have_content("Sign-up")
   end
 
+  scenario 'I cannot log in with the wrong credentials' do
+    visit ('/')
+    click_link('Sign-in')
+    fill_in(:email, with: 'example@gmail.com')
+    fill_in(:password, with: 'abc')
+    click_button('Sign-in')
+    expect(page).to have_content("Hello World")
+  end
+
 end
