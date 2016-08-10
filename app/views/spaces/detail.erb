@@ -5,3 +5,9 @@
     <li>space price/night :£<%= @space.price %></li>
     <li>Available from: <%= @space.start_date.to_date.to_s + " to " + @space.end_date.to_date.to_s %></li>
   </ul>
+
+  <form action="/booking_request" method="post">
+    <input type="date" name="start_date">
+    <input type="date" name="end_date">
+    <input type="submit" value="Make booking request">
+  </form>

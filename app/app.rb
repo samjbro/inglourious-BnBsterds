@@ -90,6 +90,10 @@ class InglouriousBnB < Sinatra::Base
     redirect '/'
   end
 
+  post '/booking_request' do
+    
+  end
+
   helpers do
     def current_user
       @current_user = User.get(session[:id])
