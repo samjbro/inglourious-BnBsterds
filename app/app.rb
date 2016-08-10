@@ -54,7 +54,7 @@ class InglouriousBnB < Sinatra::Base
     if session[:filter_to] == nil && session[:filter_from] == nil
       @spaces = Space.all
     else
-
+      @spaces = Space.all(start_date: (session[:filter_from]..session[:filter_to]))
     end
     erb :'spaces/all'
   end
