@@ -97,6 +97,7 @@ my space is available for the requested date until I accept a request.
 | knows date space has been booked | |
 
 ![alt text](https://github.com/samjbro/inglourious-BnBsterds/blob/master/Drawing.jpeg?raw=true "sketch of relationship between classes")
+![alt text](https://github.com/samjbro/inglourious-BnBsterds/blob/master/database_diagram.jpeg?raw=true "sketch of relationship between classes")
 
 ## Work hours
 
