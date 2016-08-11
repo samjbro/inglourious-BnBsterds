@@ -47,12 +47,18 @@ class InglouriousBnB < Sinatra::Base
       @request_details.push({:space_name => Space.get(request.space_id).name ,
                              :customer_name => User.get(request.user_id).name,
                              :start_date => request.start_date,
-                             :end_date => request.end_date})
+                             :end_date => request.end_date,
+                             :request_id => request.id})
     end
 
     erb :'users/profile'
   end
 
+  post '/requests/index' do
+    @space = Space.get(params[:space_id])
+    @requests = BookingRequest.all(:space => @space)
+    erb :'requests/index'
+  end
 
   get '/spaces/new' do
     erb :'spaces/new'

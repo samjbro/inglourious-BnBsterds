@@ -25,3 +25,11 @@ def create_space(name: "Inglorious Apartment",
   fill_in("space_end_date", :with => end_date)
   click_button("submit")
 end
+def make_booking_request(start_date: '2016/08/09',
+                         end_date: '2016/08/16')
+  visit '/spaces/all'
+  click_button('Space details')
+  fill_in('start_date', :with => start_date)
+  fill_in('end_date', :with => end_date)
+  click_button('Make booking request')
+end
