@@ -13,6 +13,7 @@ feature 'user management' do
                 password: 'password123',
                 password_confirmation: 'password123')
     expect{ sign_up }.not_to change{ User.count }
+    expect(page).to have_content("Email is already taken")
   end
 
   scenario 'I am able to see my user profile' do

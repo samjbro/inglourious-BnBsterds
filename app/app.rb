@@ -28,7 +28,7 @@ class InglouriousBnB < Sinatra::Base
                         email: params[:email],
                         password: params[:password],
                         password_confirmation: params[:password_confirmation])
-    if user.save
+    if @user.save
       session[:id] = @user.id
       redirect('/')
     else
