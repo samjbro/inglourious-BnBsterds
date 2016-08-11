@@ -112,11 +112,15 @@ class InglouriousBnB < Sinatra::Base
     booking_request.space = space
     current_user.bookingRequests << booking_request
     space.bookingRequests << booking_request
-    booking_request.save
-    space.save
-    current_user.save
-
-    redirect '/spaces/confirmation'
+    if booking_request.save
+      space.save
+      current_user.save
+      redirect '/spaces/confirmation'
+    else
+      flash.now[:errors] = ["The space is unavailable for the dates you have selected"]
+      @space = space
+      erb :'spaces/detail'
+    end
   end
 
   get '/spaces/confirmation' do
