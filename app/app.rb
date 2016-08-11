@@ -104,6 +104,7 @@ class InglouriousBnB < Sinatra::Base
   end
 
   post '/booking_request' do
+    require_sign_in("You must be signed-in to book a space!")
     booking_request = BookingRequest.new(start_date: params[:start_date],
                                             end_date: params[:end_date])
     space = Space.get(params[:space_id])
