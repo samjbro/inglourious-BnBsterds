@@ -36,9 +36,7 @@ feature 'booking requests' do
     create_space
     make_booking_request
     visit '/users/profile'
-    click_button 'See Requests'
-    expect(page).to have_content('You have not approved this request')
-    click_button 'Approve Request'
-    expect(page).to have_content('You have approved this request')
+    click_button 'Approve'
+    expect(page).to have_content('You have actioned this request')
   end
 end

@@ -55,9 +55,12 @@ class InglouriousBnB < Sinatra::Base
   end
 
   post '/requests/index' do
-    @space = Space.get(params[:space_id])
-    @requests = BookingRequest.all(:space => @space)
-    erb :'requests/index'
+    params[:approval] == 'Approve' ? @approval = true : @approval = false
+    @request = BookingRequest.get(params[:request_id])
+    @request.approved = @approval
+    #- this DOES NOT WORK @request.save
+    # DO STUFF TO REMOVER FROM REQUESTS ARRAY
+    erb :'/requests/confirmation'
   end
 
   get '/spaces/new' do
