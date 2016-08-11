@@ -46,5 +46,6 @@ feature 'booking requests' do
     click_button('Make booking request')
     visit '/users/profile'
     expect(page).to have_content('Unapproved booking requests on spaces I own: 1')
+    expect(page).to have_content('Joe Bloggs requested your Inglorious Apartment property from 2016-08-09 to 2016-08-16')
   end
 end

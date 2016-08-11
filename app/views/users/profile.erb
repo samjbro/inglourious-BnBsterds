@@ -13,6 +13,9 @@ Spaces I own:
 
 Unapproved booking requests on spaces I own: <%= @requests.length %>
 
-<% @requests.each do |request| %>
-  <br><%= request.user_id %> requested your <%= request.space_id %> property from <%= request.start_date %> to <%= request.end_date %>
+<% @request_details.each do |detail| %>
+  <br><%= detail[:customer_name] %> requested your
+      <%= detail[:space_name] %> property from
+      <%= detail[:start_date] %> to
+      <%= detail[:end_date] %>
 <% end %>
