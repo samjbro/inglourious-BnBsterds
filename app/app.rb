@@ -39,6 +39,7 @@ class InglouriousBnB < Sinatra::Base
 
   get '/users/profile' do
     @spaces = Space.all(user_id: session[:id])
+    @requests = BookingRequest.all(:space => @spaces)
     erb :'users/profile'
   end
 

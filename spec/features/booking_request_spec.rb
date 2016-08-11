@@ -35,4 +35,16 @@ feature 'booking requests' do
     click_button('Make booking request')
     expect(page).to have_content('You must be signed-in to book a space!')
   end
+
+  scenario 'users can see booking requests for spaces they own' do
+    sign_up
+    create_space
+    visit '/spaces/all'
+    click_button('Space details')
+    fill_in('start_date', :with => '2016/08/09')
+    fill_in('end_date', :with => '2016/08/16')
+    click_button('Make booking request')
+    visit '/users/profile'
+    expect(page).to have_content('Unapproved booking requests on spaces I own: 1')
+  end
 end
