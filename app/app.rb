@@ -102,6 +102,27 @@ class InglouriousBnB < Sinatra::Base
     redirect '/'
   end
 
+  post '/booking_request' do
+    booking_request = BookingRequest.new(start_date: params[:start_date],
+                                            end_date: params[:end_date])
+    space = Space.get(params[:space_id])
+    booking_request.user = current_user
+    booking_request.space = space
+    current_user.bookingRequests << booking_request
+    space.bookingRequests << booking_request
+    booking_request.save
+    space.save
+    current_user.save
+
+    redirect '/spaces/confirmation'
+  end
+
+  get '/spaces/confirmation' do
+    @booking_request = BookingRequest.first(user_id: current_user.id)
+    @space = Space.get(@booking_request.space_id)
+    erb :'spaces/confirmation'
+  end
+
   helpers do
     def current_user
       @current_user = User.get(session[:id])
