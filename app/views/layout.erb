@@ -2,8 +2,21 @@
 <html>
   <head>
     <title>InglouriousBnB</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
   </head>
   <body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <p class="navbar-text navbar-left"><a href="/spaces/all" class="navbar-link">View spaces</a></p>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/session/new" class="navbar-link">Sign in</a></li>
+          <li><a href="/session/" class="navbar-link">Sign out</a></li>
+        </ul>
+      </div>
+    </nav>
+
     <%= partial :flash %>
     <% if current_user %>
     You are signed in as <%= current_user.name %>.
