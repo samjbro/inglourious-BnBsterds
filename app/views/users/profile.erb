@@ -1,7 +1,7 @@
 Name: <%= current_user.name %>
 Email: <%= current_user.email %>
 
-
+Spaces I own:
 <% @spaces.each do |space| %>
   <ul id=<%= space.name %>>
     <li>space name :<%= space.name%></li>
@@ -9,4 +9,13 @@ Email: <%= current_user.email %>
     <li>space price/night :£<%= space.price %></li>
     <li>Available from: <%= space.start_date.to_date.to_s + " to " + space.end_date.to_date.to_s %></li>
   </ul>
+<% end %>
+
+Unapproved booking requests on spaces I own: <%= @requests.length %>
+
+<% @request_details.each do |detail| %>
+  <br><%= detail[:customer_name] %> requested your
+      <%= detail[:space_name] %> property from
+      <%= detail[:start_date] %> to
+      <%= detail[:end_date] %>
 <% end %>

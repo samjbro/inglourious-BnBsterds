@@ -39,6 +39,17 @@ class InglouriousBnB < Sinatra::Base
 
   get '/users/profile' do
     @spaces = Space.all(user_id: session[:id])
+    @requests = BookingRequest.all(:space => @spaces)
+    @users = User.all
+    @request_details = []
+    @requests.each do |request|
+
+      @request_details.push({:space_name => Space.get(request.space_id).name ,
+                             :customer_name => User.get(request.user_id).name,
+                             :start_date => request.start_date,
+                             :end_date => request.end_date})
+    end
+
     erb :'users/profile'
   end
 
