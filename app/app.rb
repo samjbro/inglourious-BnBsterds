@@ -48,6 +48,7 @@ class InglouriousBnB < Sinatra::Base
   end
 
   post '/spaces' do
+    require_sign_in("You must be signed-in to create a space!")
      space = Space.new(name: params[:space_name],
                                     description: params[:space_description],
                                     price: params[:space_price].to_i,
@@ -116,6 +117,11 @@ class InglouriousBnB < Sinatra::Base
         end
       end
       return_arr
+    end
+
+    def require_sign_in(reason)
+      flash.next[:errors] = [reason]
+      redirect '/session/new' unless current_user
     end
   end
 end
