@@ -146,8 +146,10 @@ class InglouriousBnB < Sinatra::Base
     end
 
     def require_sign_in(reason)
-      flash.next[:errors] = [reason]
-      redirect '/session/new' unless current_user
+      unless current_user
+        flash.next[:errors] = [reason]
+        redirect '/session/new'
+      end
     end
   end
 end
