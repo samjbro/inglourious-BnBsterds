@@ -21,7 +21,7 @@ feature  'Viewing spaces' do
     visit('/spaces/all')
     fill_in(:available_from, with: '2016/08/15')
     fill_in(:available_to, with: '2016/08/25')
-    click_button("Filter")
+    click_button("Search")
     expect(page).to have_content('early date')
     expect(page).not_to have_content('later date')
   end
@@ -36,7 +36,7 @@ feature  'Viewing spaces' do
     visit('/spaces/all')
     fill_in(:available_from, with: '2016/08/10')
     fill_in(:available_to, with: '2016/08/12')
-    click_button("Filter")
+    click_button("Search")
     expect(page).to have_content('early date')
     expect(page).not_to have_content('later date')
   end
