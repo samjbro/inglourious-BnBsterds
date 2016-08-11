@@ -98,7 +98,7 @@ my space is available for the requested date until I accept a request.
 
 ![alt text](https://github.com/samjbro/inglourious-BnBsterds/blob/master/Drawing.jpeg?raw=true "sketch of relationship between classes")
 ![alt text](https://github.com/samjbro/inglourious-BnBsterds/blob/master/database_diagram.jpeg?raw=true "diagram of database flow concept")
-![alt text](https://github.com/samjbro/inglourious-BnBsterds/blob/master/DM relationships.png?raw=true "diagram of database relationship")
+![alt text](https://github.com/samjbro/inglourious-BnBsterds/blob/master/DM_relationships.png?raw=true "diagram of database relationship")
 
 ## Work hours
 
