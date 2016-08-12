@@ -55,12 +55,9 @@ class InglouriousBnB < Sinatra::Base
   end
 
   post '/requests/index' do
-    params[:approval] == 'Approve' ? @approval = true : @approval = false
-    @request = BookingRequest.get(params[:request_id])
-    @request.approved = @approval
-    #- this DOES NOT WORK @request.save
-    # DO STUFF TO REMOVER FROM REQUESTS ARRAY
-    erb :'/requests/confirmation'
+    @booking_request = BookingRequest.get(params[:request_id])
+    @booking_request.update(approved: true) if params[:approval] == 'Approve'
+    erb :'requests/confirmation'
   end
 
   get '/spaces/new' do
@@ -132,7 +129,7 @@ class InglouriousBnB < Sinatra::Base
     booking_request.space = space
     current_user.bookingRequests << booking_request
     space.bookingRequests << booking_request
-    if booking_request.save
+    if booking_request.save(:first_submit)
       space.save
       current_user.save
       redirect '/spaces/confirmation'

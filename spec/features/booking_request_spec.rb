@@ -37,6 +37,6 @@ feature 'booking requests' do
     make_booking_request
     visit '/users/profile'
     click_button 'Approve'
-    expect(page).to have_content('You have actioned this request')
+    expect(page).to have_content('This request is now approved')
   end
 end

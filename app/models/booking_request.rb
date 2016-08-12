@@ -13,7 +13,8 @@ class BookingRequest
   validates_with_method :start_date,
                         :end_date,
                         :space,
-                        :method => :validates_booking_dates
+                        :method => :validates_booking_dates,
+                        :when => [:first_submit]
 
   def validates_booking_dates
     space_range = (@space.start_date.to_date..@space.end_date.to_date)
