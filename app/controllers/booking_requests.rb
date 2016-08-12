@@ -10,7 +10,7 @@ class InglouriousBnB < Sinatra::Base
   post '/booking_request' do
     require_sign_in("You must be signed-in to book a space!")
     booking_request = BookingRequest.new(start_date: params[:start_date],
-                                            end_date: params[:end_date])
+                                         end_date: params[:end_date])
     space = Space.get(params[:space_id])
     booking_request.user = current_user
     booking_request.space = space
@@ -20,11 +20,10 @@ class InglouriousBnB < Sinatra::Base
       space.save
       current_user.save
       redirect '/spaces/confirmation'
-    else
-      flash.now[:errors] = ["The space is unavailable for the dates you have selected"]
-      @space = space
-      erb :'spaces/detail'
     end
+    flash.now[:errors] = ["The space is unavailable for the dates you have selected"]
+    @space = space
+    erb :'spaces/detail'
   end
 
 end

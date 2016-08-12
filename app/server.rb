@@ -29,6 +29,7 @@ class InglouriousBnB < Sinatra::Base
         redirect '/session/new'
       end
     end
+
   end
 
 end

@@ -1,1 +1,4 @@
-This request is now <% if @booking_request.approved %>approved<% elsif @booking_request.approved == false %>rejected<% end %>.
+This request is now
+<% if @booking_request.approved %>approved
+<% elsif @booking_request.approved == false %>rejected
+<% end %>.
