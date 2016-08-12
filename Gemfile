@@ -10,6 +10,8 @@ gem 'dm-postgres-adapter'
 gem 'rake'
 gem 'sinatra-flash'
 gem 'sinatra-partial'
+gem 'pry'
+gem 'byebug'
 
 group :test, :development do
   gem 'rspec'

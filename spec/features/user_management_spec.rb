@@ -19,8 +19,7 @@ feature 'user management' do
   scenario 'I am able to see my user profile' do
     sign_up
     visit('/users/profile')
-    expect(page).to have_content('Name: Joe Bloggs')
-    expect(page).to have_content('Email: example@gmail.com')
+    expect(page).to have_content('Joe Bloggs')
   end
 
 
