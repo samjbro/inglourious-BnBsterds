@@ -48,4 +48,13 @@ feature 'booking requests' do
     click_button 'Approve'
     expect(page).to have_content('This request is now approved')
   end
+
+  scenario 'users can reject booking requests for spaces they own' do
+    sign_up
+    create_space
+    make_booking_request
+    click_link 'Profile'
+    click_button 'Reject'
+    expect(page).to have_content('This request is now rejected')
+  end
 end
