@@ -57,4 +57,13 @@ feature 'booking requests' do
     click_button 'Reject'
     expect(page).to have_content('This request is now rejected')
   end
+
+  scenario 'users can only see open booking requests' do
+    sign_up
+    create_space
+    make_booking_request
+    click_link 'Profile'
+    click_button 'Approve'
+    expect(page).to have_content('Unapproved booking requests on spaces I own: 0')
+  end
 end
