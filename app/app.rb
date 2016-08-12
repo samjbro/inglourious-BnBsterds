@@ -57,6 +57,7 @@ class InglouriousBnB < Sinatra::Base
   post '/requests/index' do
     @booking_request = BookingRequest.get(params[:request_id])
     @booking_request.update(approved: true) if params[:approval] == 'Approve'
+    @booking_request.update(approved: false) if params[:approval] == 'Reject'
     erb :'requests/confirmation'
   end
 

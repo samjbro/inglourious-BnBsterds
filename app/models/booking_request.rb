@@ -5,7 +5,7 @@ class BookingRequest
   property :id, Serial
   property :start_date, Date
   property :end_date, Date
-  property :approved, Boolean, default: false
+  property :approved, Boolean
 
   belongs_to :user
   belongs_to :space
