@@ -2,22 +2,33 @@
 <html>
   <head>
     <title>InglouriousBnB</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/main.css" />
   </head>
   <body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <p class="navbar-text navbar-left"><a href="/spaces/all" class="navbar-link">View spaces</a></p>
+          <% if current_user %>
+          <p class="navbar-text navbar-left"><a href="/users/profile" class="navbar-link">User Profile</a></p>
+          <% end %>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <% if current_user %>
+          <li class="navbar-text">You are signed in as <%= current_user.name %>.</li>
+          <form class="navbar-form navbar-right" action="/session/sign-out" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <input type="submit" class="btn btn-default" value="Sign-out">
+          </form>
+          <% else %>
+          <li><a href="/session/new" class="navbar-link">Sign-in</a></li>
+          <li><a href="/users/new" class="navbar-link">Sign-up</a></li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
     <%= partial :flash %>
-    <% if current_user %>
-    You are signed in as <%= current_user.name %>.
-
-    <form action="/session/sign-out" method="post">
-      <input type="hidden" name="_method" value="delete">
-      <input type="submit" value="Sign-out">
-    </form>
-
-    <% else %>
-    <a href="/users/new" >Sign-up</a>
-    <a href="/session/new">Sign-in</a>
-
-    <% end %>
     <%= yield %>
   </body>
 </html>
