@@ -6,6 +6,15 @@ feature 'booking requests' do
     make_booking_request
     expect(page).to have_content('Booking request made for Inglorious Apartment for dates 2016-08-09 - 2016-08-16')
   end
+  scenario 'cannot create booking request for date that have already been booked' do
+    sign_up
+    create_space
+    make_booking_request
+    visit '/users/profile'
+    click_button 'Approve'
+    make_booking_request
+    expect(page).to have_content('The space is unavailable for the dates you have selected')
+  end
 
   scenario 'does not create booking request for unavailable dates' do
       sign_up
