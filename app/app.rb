@@ -47,12 +47,18 @@ class InglouriousBnB < Sinatra::Base
       @request_details.push({:space_name => Space.get(request.space_id).name ,
                              :customer_name => User.get(request.user_id).name,
                              :start_date => request.start_date,
-                             :end_date => request.end_date})
+                             :end_date => request.end_date,
+                             :request_id => request.id})
     end
 
     erb :'users/profile'
   end
 
+  post '/requests/index' do
+    @booking_request = BookingRequest.get(params[:request_id])
+    @booking_request.update(approved: true) if params[:approval] == 'Approve'
+    erb :'requests/confirmation'
+  end
 
   get '/spaces/new' do
     erb :'spaces/new'
@@ -123,7 +129,7 @@ class InglouriousBnB < Sinatra::Base
     booking_request.space = space
     current_user.bookingRequests << booking_request
     space.bookingRequests << booking_request
-    if booking_request.save
+    if booking_request.save(:first_submit)
       space.save
       current_user.save
       redirect '/spaces/confirmation'

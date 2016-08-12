@@ -3,12 +3,13 @@ Email: <%= current_user.email %>
 
 Spaces I own:
 <% @spaces.each do |space| %>
-  <ul id=<%= space.name %>>
-    <li>space name :<%= space.name%></li>
+  <ul>
+    <li>space name : <%= space.name%></li>
     <li>space description :<%= space.description %></li>
     <li>space price/night :£<%= space.price %></li>
     <li>Available from: <%= space.start_date.to_date.to_s + " to " + space.end_date.to_date.to_s %></li>
   </ul>
+
 <% end %>
 
 Unapproved booking requests on spaces I own: <%= @requests.length %>
@@ -18,4 +19,9 @@ Unapproved booking requests on spaces I own: <%= @requests.length %>
       <%= detail[:space_name] %> property from
       <%= detail[:start_date] %> to
       <%= detail[:end_date] %>
+      <form action='/requests/index' method='post' >
+        <input type="hidden" name='request_id' value='<%= detail[:request_id] %>' />
+        <input type='submit' name='approval' value='Approve' />
+        <input type='submit' name='approval' value='Reject' />
+      </form>
 <% end %>
