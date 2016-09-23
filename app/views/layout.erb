@@ -9,6 +9,8 @@
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
+          <p class="navbar-text navbar-left"><a href="/spaces/new" class="navbar-link">Add a space</a></p>
+          <% if current_user %>
           <p class="navbar-text navbar-left"><a href="/spaces/all" class="navbar-link">View spaces</a></p>
           <% if current_user %>
           <p class="navbar-text navbar-left"><a href="/users/profile" class="navbar-link">User Profile</a></p>
