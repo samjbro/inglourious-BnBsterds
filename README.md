@@ -36,4 +36,4 @@ Navigate to:
 
 ``localhost:9292``
 
-Alternatively the app is deployed to [Heroku](https://meal-planner-ma.herokuapp.com/)
+Alternatively the app is deployed to [Heroku](https://inglourious-bnbsterds.herokuapp.com/)
