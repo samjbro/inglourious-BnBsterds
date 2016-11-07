@@ -18,8 +18,9 @@ class InglouriousBnB < Sinatra::Base
   end
 
   get '/spaces/all' do
-    if session[:filter_to] == nil || session[:filter_from] == nil
+    if session[:filter_to] == (nil || "") || session[:filter_from] == (nil || "")
       @spaces = Space.all
+      flash.next["Please select a start and end date"]
     else
       filter_range = (Date.parse(session[:filter_from])..Date.parse(session[:filter_to]))
       @spaces = check_availability(Space.all, filter_range)
@@ -36,9 +37,14 @@ class InglouriousBnB < Sinatra::Base
   end
 
   post '/spaces/filtered' do
-    session[:filter_to] = params[:available_to]
-    session[:filter_from] = params[:available_from]
-    redirect '/spaces/all'
+    if session[:filter_to] == (nil || "") || session[:filter_from] == (nil || "")
+      flash.next["Please select a start and end date"]
+      redirect '/spaces/all'
+    else
+      session[:filter_to] = params[:available_to]
+      session[:filter_from] = params[:available_from]
+      redirect '/spaces/all'
+    end
   end
 
   get '/spaces/confirmation' do
